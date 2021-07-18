@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todoList</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="main">
+        <input type="text" placeholder="type here..." class="input">
+        <button type="button" class="btn" onclick="add()">Add</button>       
+        <br>
+        <span id="error"></span>
+        <ol class="task" id="deltItems"></ol>
+   </div>
+   <script>
+            const add = () => {               
+                document.querySelector('#error').innerHTML = ""
+                var input = document.querySelector('.input').value;
+                if(input == ""){
+                    document.querySelector('#error').innerHTML = "Please Enter a Valid Input"
+                }
+                else{
+                    var task = document.querySelector('.task')
+                    var list = document.createElement('li');  
+                    list.innerHTML =  input;
+                    var delbtn = document.createElement('button');
+                    delbtn.className = "deltbtn"
+                    delbtn.appendChild(document.createTextNode('X'));
+                    list.appendChild(delbtn);
+                    task.appendChild(list);
+                    document.querySelector('.input').value = ''                    
+                }            
+        }
+        var deltebtn = document.querySelector('#deltItems')
+        deltebtn.addEventListener('click', (e)=>{
+            var task = document.querySelector('.task')
+            var list = e.target.parentNode;
+            task.removeChild(list);
+        })      
+   </script>
+</body>
+</html>
